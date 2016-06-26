@@ -1,0 +1,24 @@
+<div class="container" ng-controller="SearchCtrl">
+   <h1>{{name}}</h1>
+   <br>
+
+  <form ng-submit="searchTitles(query)" ng-controller="SearchCtrl" class="container">
+
+    <div class="input-group input-group-lg">
+      <input type="text" class="form-control" placeholder="Search for Title" ng-model="titleSearch.TitleName">
+      <span class="input-group-btn">
+        <a href="#/single" role="button" class="btn btn-default" type="button">Go!</a>
+      </span>
+    </div><!-- /input-group -->
+
+    <div>
+      <div ng-repeat="title in titles | filter: titleSearch">
+        <li>
+          <div ng-controller="SingleCtrl">
+            <a href="#/single/{{title.titleId}}">{{title.TitleName}}</a>
+          </div>
+        </li>
+     </div>
+    </div>
+  </form>
+  </div>
