@@ -33,7 +33,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SearchCtrl = function SearchCtrl($scope, DataService) {
+var SearchCtrl = function SearchCtrl($scope, DataService, $uibModal, $log) {
 
   $scope.name = "Movie Titles";
 
@@ -41,9 +41,33 @@ var SearchCtrl = function SearchCtrl($scope, DataService) {
     $scope.titles = res.data;
     console.log(res);
   });
+
+  //open modal window to get info
+  $scope.singleModal = function (size, selectedTitle) {
+
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'templates/singleTitle.tpl.html',
+      controller: function controller($scope, $uibModalInstance, title) {
+        $scope.title = title;
+      },
+      size: size,
+      resolve: {
+        title: function title() {
+          return $scope.selectedTitle;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
 };
 
-SearchCtrl.$inject = ['$scope', 'DataService'];
+SearchCtrl.$inject = ['$scope', 'DataService', '$uibModal', '$log'];
 
 exports['default'] = SearchCtrl;
 module.exports = exports['default'];
@@ -116,7 +140,7 @@ var DataService = function DataService($http) {
   this.getAllTitles = getAllTitles;
 
   function getAllTitles() {
-    return $http.get('/titles');
+    return $http.get('data/db.json');
   }
 };
 

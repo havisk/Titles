@@ -4,7 +4,7 @@ let DataService = function($http) {
 
 
   function getAllTitles () {
-    return $http.get('/titles');
+    return $http.get('data/db.json');
   }
 
 };

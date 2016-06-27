@@ -5,20 +5,21 @@
   <form ng-submit="searchTitles(query)" ng-controller="SearchCtrl" class="container">
 
     <div class="input-group input-group-lg">
-      <input type="text" class="form-control" placeholder="Search for Title" ng-model="titleSearch.TitleName">
-      <span class="input-group-btn">
+      <input type="text" class="form-control" placeholder="Filter Titles" ng-model="titleSearch.TitleName">
+      <!-- <span class="input-group-btn">
         <a href="#" role="button" class="btn btn-default" type="button">Go!</a>
-      </span>
+      </span> -->
     </div><!-- /input-group -->
 
     <div>
       <div ng-repeat="title in titles | filter: titleSearch">
         <li>
           <div ng-controller="SingleCtrl">
-            <a href="#/single/{{title.titleId}}">{{title.TitleName}}</a>
+            <a ng-click="SearchCtrl.singleModal('lg', title)">{{title.TitleName}}</a>
           </div>
         </li>
-     </div>
+      </div>
     </div>
+
   </form>
   </div>
