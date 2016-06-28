@@ -7,7 +7,7 @@ import 'angular-ui-bootstrap';
 import config from './config';
 
 import SearchCtrl from './controllers/searchCtrl';
-import SingleCtrl from './controllers/singleCtrl';
+// import SingleCtrl from './controllers/singleCtrl';
 import DataService from './services/dataService';
 
 
@@ -16,7 +16,7 @@ angular
 .module('tc', ['ui.bootstrap', 'ui.router'])
 .config(config)
 .controller('SearchCtrl', SearchCtrl)
-.controller('SingleCtrl', SingleCtrl)
+// .controller('SingleCtrl', SingleCtrl)
 .service('DataService', DataService)
 
 

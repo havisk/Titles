@@ -1,4 +1,4 @@
-<div class="container" ng-controller="SearchCtrl">
+<div class="page-header" ng-controller="SearchCtrl">
    <h1>{{name}}</h1>
    <br>
 
@@ -13,10 +13,17 @@
 
     <div>
       <div ng-repeat="title in titles | filter: titleSearch">
-        <li>
-          <div ng-controller="SingleCtrl">
-            <a ng-click="SearchCtrl.singleModal('lg', title)">{{title.TitleName}}</a>
+
+        <li class="titles">
+          <div class="box">
+            <a ng-click="toggle = !toggle">{{title.TitleName}}</a><br>          
           </div>
+
+          <div class="check-element animate-show" ng-show="toggle">
+           <p>{{title.ReleaseYear}}</p><br>
+           <p>{{title.Storylines[0].Description}}</p><br>
+          </div>
+
         </li>
       </div>
     </div>

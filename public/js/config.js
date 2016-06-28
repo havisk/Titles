@@ -11,15 +11,8 @@ let config = function($stateProvider, $urlRouterProvider) {
       url:'/',
       contoller:'HomeCtrl',
       templateUrl: 'templates/home.tpl.html'
-    })
-    .state('root.singletTitle', {
-      url: '/single',
-      controller: 'SearchCtrl',
-      templateUrl:'templates/singleTitle.tpl.html'
     });
-
-  
-  
+    
 
 };
 

@@ -15,10 +15,6 @@ var config = function config($stateProvider, $urlRouterProvider) {
     url: '/',
     contoller: 'HomeCtrl',
     templateUrl: 'templates/home.tpl.html'
-  }).state('root.singletTitle', {
-    url: '/single',
-    controller: 'SearchCtrl',
-    templateUrl: 'templates/singleTitle.tpl.html'
   });
 };
 
@@ -33,65 +29,24 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SearchCtrl = function SearchCtrl($scope, DataService, $uibModal, $log) {
+var SearchCtrl = function SearchCtrl($scope, DataService) {
 
   $scope.name = "Movie Titles";
 
+  $scope.toggle = false;
+
   DataService.getAllTitles().then(function (res) {
     $scope.titles = res.data;
-    console.log(res);
+    // console.log(res);
   });
-
-  //open modal window to get info
-  $scope.singleModal = function (size, selectedTitle) {
-
-    var modalInstance = $uibModal.open({
-      animation: $scope.animationsEnabled,
-      templateUrl: 'templates/singleTitle.tpl.html',
-      controller: function controller($scope, $uibModalInstance, title) {
-        $scope.title = title;
-      },
-      size: size,
-      resolve: {
-        title: function title() {
-          return $scope.selectedTitle;
-        }
-      }
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
 };
 
-SearchCtrl.$inject = ['$scope', 'DataService', '$uibModal', '$log'];
+SearchCtrl.$inject = ['$scope', 'DataService'];
 
 exports['default'] = SearchCtrl;
 module.exports = exports['default'];
 
 },{}],3:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var SingleCtrl = function SingleCtrl($scope, DataService, $stateParams) {
-
-  DataService.getAllTitles($stateParams.TitleId).then(function (res) {
-    $scope.single = res.data;
-    console.log(res);
-  });
-};
-
-SingleCtrl.$inject = ['$scope', 'DataService', '$stateParams'];
-
-exports['default'] = SingleCtrl;
-module.exports = exports['default'];
-
-},{}],4:[function(require,module,exports){
 // Make sure shim jQuery first
 'use strict';
 
@@ -119,17 +74,17 @@ var _controllersSearchCtrl = require('./controllers/searchCtrl');
 
 var _controllersSearchCtrl2 = _interopRequireDefault(_controllersSearchCtrl);
 
-var _controllersSingleCtrl = require('./controllers/singleCtrl');
-
-var _controllersSingleCtrl2 = _interopRequireDefault(_controllersSingleCtrl);
+// import SingleCtrl from './controllers/singleCtrl';
 
 var _servicesDataService = require('./services/dataService');
 
 var _servicesDataService2 = _interopRequireDefault(_servicesDataService);
 
-_angular2['default'].module('tc', ['ui.bootstrap', 'ui.router']).config(_config2['default']).controller('SearchCtrl', _controllersSearchCtrl2['default']).controller('SingleCtrl', _controllersSingleCtrl2['default']).service('DataService', _servicesDataService2['default']);
+_angular2['default'].module('tc', ['ui.bootstrap', 'ui.router']).config(_config2['default']).controller('SearchCtrl', _controllersSearchCtrl2['default'])
+// .controller('SingleCtrl', SingleCtrl)
+.service('DataService', _servicesDataService2['default']);
 
-},{"./config":1,"./controllers/searchCtrl":2,"./controllers/singleCtrl":3,"./services/dataService":5,"angular":10,"angular-ui-bootstrap":7,"angular-ui-router":8,"bootstrap-sass":11,"jquery":12}],5:[function(require,module,exports){
+},{"./config":1,"./controllers/searchCtrl":2,"./services/dataService":4,"angular":9,"angular-ui-bootstrap":6,"angular-ui-router":7,"bootstrap-sass":10,"jquery":11}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -140,7 +95,7 @@ var DataService = function DataService($http) {
   this.getAllTitles = getAllTitles;
 
   function getAllTitles() {
-    return $http.get('data/db.json');
+    return $http.get('/titles');
   }
 };
 
@@ -149,7 +104,7 @@ DataService.$inject = ['$http'];
 exports['default'] = DataService;
 module.exports = exports['default'];
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /*
  * angular-ui-bootstrap
  * http://angular-ui.github.io/bootstrap/
@@ -7497,12 +7452,12 @@ angular.module('ui.bootstrap.datepickerPopup').run(function() {!angular.$$csp().
 angular.module('ui.bootstrap.tooltip').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTooltipCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style>'); angular.$$uibTooltipCss = true; });
 angular.module('ui.bootstrap.timepicker').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTimepickerCss && angular.element(document).find('head').prepend('<style type="text/css">.uib-time input{width:50px;}</style>'); angular.$$uibTimepickerCss = true; });
 angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTypeaheadCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style>'); angular.$$uibTypeaheadCss = true; });
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 require('./dist/ui-bootstrap-tpls');
 
 module.exports = 'ui.bootstrap';
 
-},{"./dist/ui-bootstrap-tpls":6}],8:[function(require,module,exports){
+},{"./dist/ui-bootstrap-tpls":5}],7:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.3.1
@@ -12079,7 +12034,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.7
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -43553,11 +43508,11 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":9}],11:[function(require,module,exports){
+},{"./angular":8}],10:[function(require,module,exports){
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -45922,7 +45877,7 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*!
@@ -55746,7 +55701,7 @@ return jQuery;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}]},{},[4])
+},{}]},{},[3])
 
 
 //# sourceMappingURL=main.js.map

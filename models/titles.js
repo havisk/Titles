@@ -34,7 +34,7 @@ var TitlesSchema = new Schema({
     Language: String,
     Type: String
    }]
-});
+}, {collection: 'Titles'});
 
 
 

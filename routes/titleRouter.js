@@ -12,18 +12,17 @@ titleRouter.route('/')
 .get(function (req, res, next) {
   Titles.find(function(err, titles){
     if(err) next(err);
-    console.log(titles);
     res.json(titles);
   });
  
 })
 
- titleRouter.route('/:TitlesId')
+ titleRouter.route('/:id')
 
  .get(function (req, res, next) {
-  Titles.findById(req.params.TitlesId, function(err, title) {
+  Titles.findById(req.params.id, function(err, title) {
     if (err) next(err);
-    console.log();
+    console.log(title);
     res.json(title);
   });
 });
