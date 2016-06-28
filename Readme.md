@@ -3,6 +3,11 @@
 > Used Angular for frontEnd
 > Used Node-Express for backend
 
+>must have mongodb on computer
+>open which ever terminal you're using. cd to project folder.  type npm start
+>open another terminal.  cd to project folder, then cd to public folder.  type gulp start
+>open web browser and enter localhost:8000
+
 >Begin Typing the name to filter the titles
 >Click on title to see more information.
 
