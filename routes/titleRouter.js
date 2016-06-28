@@ -15,17 +15,9 @@ titleRouter.route('/')
     res.json(titles);
   });
  
-})
-
- titleRouter.route('/:id')
-
- .get(function (req, res, next) {
-  Titles.findById(req.params.id, function(err, title) {
-    if (err) next(err);
-    console.log(title);
-    res.json(title);
-  });
 });
+
+
 
 
 

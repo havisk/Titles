@@ -1,15 +1,15 @@
-let DataService = function($http) {
+let DataService = function($resource) {
 
   this.getAllTitles = getAllTitles;
   
 
 
   function getAllTitles () {
-    return $http.get('/titles');
+    return $resource('http://localhost:3000/titles');
   }
 
 };
 
-DataService.$inject = ['$http'];
+DataService.$inject = ['$resource'];
 
 export default DataService;

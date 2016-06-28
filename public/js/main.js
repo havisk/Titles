@@ -5,18 +5,17 @@ import angular from 'angular';
 import  'angular-ui-router';
 import 'angular-ui-bootstrap';
 import config from './config';
+import 'angular-resource';
 
 import SearchCtrl from './controllers/searchCtrl';
-// import SingleCtrl from './controllers/singleCtrl';
 import DataService from './services/dataService';
 
 
 
 angular
-.module('tc', ['ui.bootstrap', 'ui.router'])
+.module('tc', ['ui.bootstrap', 'ui.router', 'ngResource'])
 .config(config)
 .controller('SearchCtrl', SearchCtrl)
-// .controller('SingleCtrl', SingleCtrl)
 .service('DataService', DataService)
 
 

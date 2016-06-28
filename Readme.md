@@ -3,6 +3,9 @@
 > Used Angular for frontEnd
 > Used Node-Express for backend
 
+>Begin Typing the name to filter the titles
+>Click on title to see more information.
+
 
 ## Usage
 

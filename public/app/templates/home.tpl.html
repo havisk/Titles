@@ -6,7 +6,7 @@
 
     <div class="input-group input-group-lg">
       <input type="text" class="form-control" placeholder="Filter Titles" ng-model="titleSearch.TitleName">
-      <!-- <span class="input-group-btn">
+<!--       <span class="input-group-btn">
         <a href="#" role="button" class="btn btn-default" type="button">Go!</a>
       </span> -->
     </div><!-- /input-group -->
@@ -16,12 +16,12 @@
 
         <li class="titles">
           <div class="box">
-            <a ng-click="toggle = !toggle">{{title.TitleName}}</a><br>          
+            <h4><a ng-click="show =!show">{{title.TitleName}}</a></h4>          
           </div>
 
-          <div class="check-element animate-show" ng-show="toggle">
-           <p>{{title.ReleaseYear}}</p><br>
-           <p>{{title.Storylines[0].Description}}</p><br>
+          <div class="check-element animate-show" ng-show="show">
+           <p><strong>Release Year:</strong> {{title.ReleaseYear}}</p><br>
+           <p><strong>Storyline:</strong> {{title.Storylines[0].Description}}</p><br>
           </div>
 
         </li>

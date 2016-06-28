@@ -7,7 +7,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
 var config = require('./config');
 
 mongoose.connect(config.mongoUrl);
@@ -32,13 +31,14 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());z
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/Titles', titleRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
